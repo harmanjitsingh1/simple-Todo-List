@@ -1,0 +1,514 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  user-select: none;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #eeeeee;
+  color: #3d3d3d;
+}
+
+body button:hover {
+  transform: scale(1.05);
+}
+
+.sideBarContainer {
+  height: 100%;
+}
+
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  height: 100%;
+  min-width: 210px;
+  padding: 20px;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+}
+
+.sideBarBtn {
+  display: none;
+}
+
+.heading {
+  color: #006eed;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.sideBar .tabsContainer {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sideBar .tabsContainer li {
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all linear 0.1s;
+}
+
+.sideBar .tabsContainer li:hover {
+  transform: scale(1.05);
+}
+
+.active {
+  background-color: #006eed;
+  color: #fff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  font-size: 25px;
+  background: #fff;
+  /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.8); */
+}
+
+.header .addTodoBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  gap: 5px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  background-color: #006eed;
+  color: #fff;
+  cursor: pointer;
+  transition: all linear 0.1s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.main {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+.mainView {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  /* overflow: auto; */
+}
+.mainView .todoHeading {
+  position: absolute;
+  width: 100%;
+  padding: 20px;
+  background-color: #eeeeee;
+}
+
+.main .todoItemsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  padding: 20px;
+  height: 100%;
+  overflow: auto;
+  padding-top: 70px;
+  scrollbar-width: none;
+}
+
+.main .todoItemsContainer .todoItem {
+  display: flex;
+  background: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* transition: all linear 0.2; */
+  transition: ease-in-out 0.5s;
+}
+
+.main .todoItemsContainer .todoItem .left {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.main .todoItemsContainer .todoItem #isCompleted {
+  height: 20px;
+  width: 20px;
+  margin-right: 20px;
+  background: red;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.main .todoItemsContainer .todoItem .details {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  min-width: 200px;
+  max-width: 300px;
+  /* justify-content: center; */
+}
+
+.main .todoItemsContainer .todoItem .title {
+  font-size: 20px;
+  max-width: 300px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.main .todoItemsContainer .todoItem .description {
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 10px;
+  text-overflow: ellipsis;
+}
+.main .todoItemsContainer .todoItem .actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  /* background: red; */
+  /* width: 30px; */
+  /* aspect-ratio: 1; */
+}
+
+.main .todoItemsContainer .todoItem .menuBtn {
+  display: none;
+  height: 25px;
+  aspect-ratio: 1;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.main .todoItemsContainer .todoItem .actions button {
+  padding: 10px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all linear 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 40px;
+  aspect-ratio: 1/1;
+}
+
+.actions .trashBtn,
+.actions .deleteBtn {
+  border: 1px solid rgb(220, 20, 60);
+  background: rgba(220, 20, 60, 0.148);
+  color: crimson;
+}
+
+.icon {
+  height: 20px;
+}
+
+/* .skeleton{
+  background: linear-gradient(90deg, #eeeeee 25%, #dddddd 50%, #eeeeee 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+}
+.skeleton-button {
+  border-radius: 5px;
+  width: 42px;
+  height: 42px;
+}
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+} */
+
+.main .todoItemsContainer .todoItem .status {
+  font-size: 12px;
+  padding: 6px 8px;
+  margin-right: 10px;
+  border-radius: 100px;
+  transition: all linear 0.3s;
+}
+
+.todoItem .pending {
+  color: rgb(219, 219, 0);
+  border: 1px solid yellow;
+  background: rgba(255, 255, 0, 0.004);
+}
+
+.todoItem .completed {
+  color: rgb(0, 151, 0);
+  border: 1px solid rgb(0, 153, 0);
+  background: rgba(0, 128, 0, 0.048);
+}
+
+.todoItem .expired {
+  background: rgba(255, 0, 0, 0.141);
+  color: rgba(255, 0, 0, 0.688);
+  border: 1px solid rgba(255, 0, 0, 0.688);
+}
+
+.nothing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 18px;
+  color: #888;
+}
+
+.modelPage {
+  position: absolute;
+  height: 100%;
+  width: 100vw;
+  background: #00000090;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 20;
+}
+.modelPage .modelForm {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.modelPage .modelForm .modelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modelPage .modelForm .modelHeader p {
+  font-size: 13px;
+  color: #484848;
+}
+
+.modelPage .modelForm .modelHeader h3 {
+  /* margin-bottom: 20px; */
+  font-size: 24px;
+  text-align: center;
+}
+
+.modelPage .modelForm label {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+.modelPage .modelForm input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+.modelPage .modelForm .buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 10px;
+}
+
+.modelPage .modelForm .buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  color: #fff;
+  cursor: pointer;
+}
+.modelPage .modelForm .cancel {
+  transition: all linear 0.1s;
+  background: rgb(114, 114, 114);
+}
+
+.modelPage .modelForm .submitBtn {
+  transition: all linear 0.1s;
+  background: #006eed;
+}
+
+.modelPage .modelForm .deleteBtn {
+  transition: all linear 0.1s;
+  background: crimson;
+  color: #fff;
+}
+.modelPage .modelForm .trashBtn {
+  background: crimson;
+  color: rgb(255, 255, 255);
+}
+.modelPage .modelForm .restoreBtn {
+  background-color: #006eed;
+  color: #fff;
+}
+
+@media (max-width: 750px) {
+  .main {
+    position: relative;
+  }
+  .header {
+    padding: 20px;
+  }
+  .todoHeading {
+    font-size: 22px;
+    padding: 10px 20px;
+  }
+  .header .addTodoBtn {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    z-index: 5;
+    box-shadow: 0 0 10px rgb(7 8 9);
+  }
+
+  .sideBarContainer {
+    display: none;
+    position: absolute;
+    background: #00000090;
+    width: 100%;
+    z-index: 10;
+  }
+  .sideBar {
+    background: #fbfbfb;
+    width: 60%;
+    max-width: 350px;
+  }
+  .sideBarBtn {
+    display: block;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    text-align: center;
+    cursor: pointer;
+  }
+  .openSideBar {
+    display: flex;
+    position: absolute;
+    height: 100%;
+    /* width: 100vw; */
+    transition: ease-in-out 0.5s;
+    animation: openSideBar 0.5s 1;
+  }
+
+  .main .todoItemsContainer .todoItem {
+    padding: 10px 15px;
+  }
+
+  .main .todoItemsContainer .todoItem .details {
+    min-width: 160px;
+  }
+
+  .main .todoItemsContainer .todoItem .title {
+    max-width: 160px;
+  }
+  .main .todoItemsContainer .todoItem .description {
+    max-width: 160px;
+  }
+
+  .main .todoItemsContainer .todoItem #isCompleted {
+    margin-right: 15px;
+  }
+
+  .main .todoItemsContainer .todoItem .actions {
+    display: none;
+  }
+
+  .main .todoItemsContainer .todoItem .menuBtn {
+    display: block;
+  }
+
+  .actionsModel .actions {
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+    gap: 15px;
+    /* height: 150px; */
+    border-radius: 20px 20px 0px 0px;
+    animation: openMenuBar 0.4s 1 forwards;
+  }
+
+  .actionsModel .actions button {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .actionsModel .actions .editBtn,
+  .actionsModel .actions .restoreBtn {
+    background: #d8d8d8;
+    color: #484848;
+  }
+
+  .actionsModel {
+    background: #00000090;
+    width: 100vw;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    overflow: hidden;
+  }
+
+  .modelPage .modelForm {
+    width: 370px;
+  }
+  .modelPage .modelForm button{
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  @keyframes openMenuBar {
+   0% {
+      bottom: -100%;
+    }
+    100% {
+      left: 0%;
+    }
+  }
+
+  @keyframes openSideBar {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 0%;
+    }
+  }
+}
